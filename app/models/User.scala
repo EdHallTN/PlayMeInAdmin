@@ -1,14 +1,21 @@
 package models
 
 import play.api.db.slick.Config.driver.simple._
+import org.mindrot.jbcrypt.BCrypt
 
+case class User(user: String, password: String){
+  val wes = new User("wes", "password")
 
+  def passwordHash = BCrypt.hashpw(password, BCrypt.gensalt(12))
 
-case class User(user: String, password: String)
+  if (BCrypt.checkpw(password, passwordHash)) {
+    println("Password matches")
+  } else {
+    println("No Match")
+  }
+}
 
 case class DBUser(id: Option[Int]=None, user:String, password:String)
-
-
 
 class UsersTable(tag: Tag) extends Table[DBUser](tag, "users") {
 
@@ -20,5 +27,9 @@ class UsersTable(tag: Tag) extends Table[DBUser](tag, "users") {
   def * = (id.?, user, password) <> (DBUser.tupled, DBUser.unapply _)
 
 }
+
+
+
+
 
 

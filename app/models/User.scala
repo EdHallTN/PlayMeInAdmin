@@ -1,23 +1,23 @@
 package models
 
 import play.api.db.slick.Config.driver.simple._
+import controllers.Application.users
 
 
+case class User(name: String, password: String)
 
-case class User(user: String, password: String)
-
-case class DBUser(id: Option[Int]=None, user:String, password:String)
+case class DBUser(id: Option[Int]=None, name: String, password: String)
 
 
 
 class UsersTable(tag: Tag) extends Table[DBUser](tag, "users") {
 
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
-  def user = column[String]("user")
+  def name = column[String]("name")
   def password = column[String]("password")
 
 
-  def * = (id.?, user, password) <> (DBUser.tupled, DBUser.unapply _)
+  def * = (id.?, name, password) <> (DBUser.tupled, DBUser.unapply _)
 
 }
 

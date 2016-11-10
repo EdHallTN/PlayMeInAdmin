@@ -5,13 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index
 
-# Home page
-POST    /insert                     controllers.Application.insert
+# New user
+POST    /new-user                   controllers.Application.userInsert
 
-GET     /json/all                   controllers.Application.jsonFindAll
+# Login
+POST    /login                      controllers.Application.login
 
-# Home page
-POST    /json/insert                controllers.Application.jsonInsert
-
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+#logout
+POST    /logout                     controllers.Application.logout

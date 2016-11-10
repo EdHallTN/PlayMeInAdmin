@@ -6,7 +6,9 @@ scalaVersion := "2.11.5" // or "2.10.4"
 
 libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.3.0-2",
-  "com.typesafe.play" %% "play-slick" % "0.8.1"
+  "com.typesafe.play" %% "play-slick" % "0.8.1",
+  "org.postgresql" % "postgresql" % "9.4-1206-jdbc4",
+  filters
 )
 
 fork in Test := false

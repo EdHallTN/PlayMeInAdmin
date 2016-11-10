@@ -3,6 +3,7 @@ package models
 import play.api.db.slick.Config.driver.simple._
 import org.mindrot.jbcrypt.BCrypt
 
+
 case class User(user: String, password: String){
   val wes = new User("wes", "password")
 

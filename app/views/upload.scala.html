@@ -1,12 +1,12 @@
 
 
-  <form action="/upload" method="post" enctype="multipart/form-data">
+  <form action="http://.../upload" method="post" enctype="multipart/form-data">
     <select>
       <option value="genre" disabled>Genre</option>
-      <option value=""></option>
+      <option value="epicMinor">Cinematic Epic in Minor Key</option>
     </select>
     <select>
-      <option value="voice" disabled>Voice</option>
+      <option selected disabled>Voice</option>
       <option value="bass">Bass</option>
       <option value="melody">Melody</option>
       <option value="drum">Drum</option>
@@ -14,7 +14,7 @@
       <option value="harmony">Harmony</option>
       <option value="alt-harmony">Alt-Harmony</option>
     </select>
-    <input type="file" name="file" id="file"/>
+    <input accept="audio/*" type="file" name="sample" />
     <button type="submit">Upload</button>
   </form>
 

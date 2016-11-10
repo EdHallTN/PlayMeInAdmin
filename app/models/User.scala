@@ -18,7 +18,4 @@ class UsersTable(tag: Tag) extends Table[DBUser](tag, "users") {
 
 
   def * = (id.?, name, password) <> (DBUser.tupled, DBUser.unapply _)
-
 }
-
-

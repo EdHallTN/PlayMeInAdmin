@@ -35,15 +35,12 @@ object Application extends Controller {
     )(User.apply)(User.unapply)
   )
 
-
   def login = Action { implicit rs =>
     val user = userForm.bindFromRequest.get
     isValidUser(user) match {
-      case true => rs.session + ("user", user.name)
-      case false => {}
+      case true => Redirect(routes.Application.index).withSession("user" -> user.name)
+      case false => Redirect(routes.Application.index)
     }
-
-    Redirect(routes.Application.index)
   }
 
   def logout = Action { implicit rs =>
@@ -56,15 +53,16 @@ object Application extends Controller {
     val user = userForm.bindFromRequest.get
     val dbUser = new DBUser(None, user.name, user.password)
     users.insert(dbUser)
-    rs.session + ("user", user.name)
 
-    Redirect(routes.Application.index)
+    Redirect(routes.Application.index).withSession("user" -> user.name)
   }
 
-  def isValidUser(user: User) : Boolean = {
-    val t = (users.findBy(name => name == user.name)) == true
-    println(t)
-    t
+  def isValidUser(user: User) = {
+    def isValidUser(user: User) : Boolean = {
+      val t = (users.findBy(name => name == user.name)).extract == true
+      println(t)
+      t
+    }
   }
 
 }
